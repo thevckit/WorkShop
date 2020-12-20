@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbWorkshopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="CourseID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Groups" Relationship="Self.fk_Group_IDCourse_Course_ID" FromRole="Course" ToRole="Group" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Groups" Relationship="Self.fk_Group_IDDepartment_Department_ID" FromRole="Department" ToRole="Group" />
+  </EntityType>
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="GenderCode" />
+    </Key>
+    <Property Name="GenderCode" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Students" Relationship="Self.fk_Student_IDGender_Gender_GenderCode" FromRole="Gender" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="GroupID" Type="Int32" Nullable="false" />
+    <Property Name="IDCourse" Type="Int32" Nullable="false" />
+    <Property Name="IDDepartment" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Course" Relationship="Self.fk_Group_IDCourse_Course_ID" FromRole="Group" ToRole="Course" />
+    <NavigationProperty Name="Department" Relationship="Self.fk_Group_IDDepartment_Department_ID" FromRole="Group" ToRole="Department" />
+    <NavigationProperty Name="Students" Relationship="Self.fk_Student_IDGroup_Group_ID" FromRole="Group" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.fk_User_IDRole_Role_RoleID" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Patronymic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IDGender" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IDGroup" Type="Int32" Nullable="false" />
+    <Property Name="IDWorkShop" Type="Int32" />
+    <NavigationProperty Name="Gender" Relationship="Self.fk_Student_IDGender_Gender_GenderCode" FromRole="Student" ToRole="Gender" />
+    <NavigationProperty Name="Group" Relationship="Self.fk_Student_IDGroup_Group_ID" FromRole="Student" ToRole="Group" />
+    <NavigationProperty Name="WorkShop" Relationship="Self.fk_Student_IDWorkShop_WorkShop_ID" FromRole="Student" ToRole="WorkShop" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TimeWorkShop">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDWorkShop" Type="Int32" Nullable="false" />
+    <Property Name="Time" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="WorkShop" Relationship="Self.fk_IDWorkShop_Time_Workshop_ID" FromRole="TimeWorkShop" ToRole="WorkShop" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="IDRole" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="IDWorkShop" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Role" Relationship="Self.fk_User_IDRole_Role_RoleID" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="WorkShop" Relationship="Self.fk_User_IDWorkShop_WorkShop_ID" FromRole="User" ToRole="WorkShop" />
+  </EntityType>
+  <EntityType Name="WorkShop">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Number" Type="Int32" Nullable="false" />
+    <Property Name="Compitation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Students" Relationship="Self.fk_Student_IDWorkShop_WorkShop_ID" FromRole="WorkShop" ToRole="Student" />
+    <NavigationProperty Name="TimeWorkShops" Relationship="Self.fk_IDWorkShop_Time_Workshop_ID" FromRole="WorkShop" ToRole="TimeWorkShop" />
+    <NavigationProperty Name="Users" Relationship="Self.fk_User_IDWorkShop_WorkShop_ID" FromRole="WorkShop" ToRole="User" />
+  </EntityType>
+  <Association Name="fk_Group_IDCourse_Course_ID">
+    <End Role="Course" Type="Self.Course" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Group" Type="Self.Group" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Group">
+        <PropertyRef Name="IDCourse" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Group_IDDepartment_Department_ID">
+    <End Role="Department" Type="Self.Department" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Group" Type="Self.Group" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Group">
+        <PropertyRef Name="IDDepartment" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Student_IDGender_Gender_GenderCode">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="GenderCode" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="IDGender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Student_IDGroup_Group_ID">
+    <End Role="Group" Type="Self.Group" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="IDGroup" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_User_IDRole_Role_RoleID">
+    <End Role="Role" Type="Self.Role" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="IDRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Student_IDWorkShop_WorkShop_ID">
+    <End Role="WorkShop" Type="Self.WorkShop" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkShop">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="IDWorkShop" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_IDWorkShop_Time_Workshop_ID">
+    <End Role="WorkShop" Type="Self.WorkShop" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TimeWorkShop" Type="Self.TimeWorkShop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkShop">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TimeWorkShop">
+        <PropertyRef Name="IDWorkShop" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_User_IDWorkShop_WorkShop_ID">
+    <End Role="WorkShop" Type="Self.WorkShop" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkShop">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="IDWorkShop" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbWorkshop" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Courses" EntityType="Self.Course" />
+    <EntitySet Name="Departments" EntityType="Self.Department" />
+    <EntitySet Name="Genders" EntityType="Self.Gender" />
+    <EntitySet Name="Groups" EntityType="Self.Group" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TimeWorkShops" EntityType="Self.TimeWorkShop" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="WorkShops" EntityType="Self.WorkShop" />
+    <AssociationSet Name="fk_Group_IDCourse_Course_ID" Association="Self.fk_Group_IDCourse_Course_ID">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="Group" EntitySet="Groups" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Group_IDDepartment_Department_ID" Association="Self.fk_Group_IDDepartment_Department_ID">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Group" EntitySet="Groups" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Student_IDGender_Gender_GenderCode" Association="Self.fk_Student_IDGender_Gender_GenderCode">
+      <End Role="Gender" EntitySet="Genders" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Student_IDGroup_Group_ID" Association="Self.fk_Student_IDGroup_Group_ID">
+      <End Role="Group" EntitySet="Groups" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="fk_User_IDRole_Role_RoleID" Association="Self.fk_User_IDRole_Role_RoleID">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Student_IDWorkShop_WorkShop_ID" Association="Self.fk_Student_IDWorkShop_WorkShop_ID">
+      <End Role="WorkShop" EntitySet="WorkShops" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="fk_IDWorkShop_Time_Workshop_ID" Association="Self.fk_IDWorkShop_Time_Workshop_ID">
+      <End Role="WorkShop" EntitySet="WorkShops" />
+      <End Role="TimeWorkShop" EntitySet="TimeWorkShops" />
+    </AssociationSet>
+    <AssociationSet Name="fk_User_IDWorkShop_WorkShop_ID" Association="Self.fk_User_IDWorkShop_WorkShop_ID">
+      <End Role="WorkShop" EntitySet="WorkShops" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

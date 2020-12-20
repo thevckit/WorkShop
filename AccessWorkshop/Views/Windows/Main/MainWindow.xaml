@@ -1,0 +1,71 @@
+﻿<Window x:Class="AccessWorkshop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AccessWorkshop"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="The ABDULKHAKIM Supporter" Height="850" Width="1280"
+        ShowInTaskbar="True"
+        WindowState="Maximized"
+        WindowStartupLocation="CenterScreen"
+        MinHeight="850" MinWidth="1280">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.2*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Margin="10,0,0,0"
+                        Orientation="Horizontal">
+                <Image Source="/Resource/9.png"
+                       Width="100"
+                       Height="100"/>
+                <TextBlock Text="Программные решения для бизнеса"
+                           Style="{StaticResource ResourceKey=starPageStyle}"
+                           VerticalAlignment="Center"
+                           Margin="30,0,0,0"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                <TextBlock Text="Окно: "
+                           Style="{StaticResource ResourceKey=starPageStyle}"/>
+                <TextBlock Text="{Binding ElementName=MainFrame, Path=Content.Title}"
+                           Style="{StaticResource ResourceKey=starPageStyle}"
+                           FontWeight="DemiBold"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                <TextBlock x:Name="txb_Time"
+                           Style="{StaticResource ResourceKey=starPageStyle}"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Frame Name="MainFrame" NavigationUIVisibility="Hidden"/>
+        </Grid>
+    </Grid>
+</Window>

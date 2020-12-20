@@ -1,0 +1,23 @@
+﻿<Application x:Class="AccessWorkshop.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:AccessWorkshop"
+             StartupUri="Views/Windows/Main/MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="TextBlock" x:Key="starPageStyle">
+                <Setter Property="FontFamily" Value="Colibri"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+            </Style>
+        </ResourceDictionary>
+
+    </Application.Resources>
+</Application>
