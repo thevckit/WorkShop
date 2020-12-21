@@ -24,5 +24,10 @@ namespace AccessWorkshop.Views.Pages.Start
         {
             InitializeComponent();
         }
+
+        private void btn_Back_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }

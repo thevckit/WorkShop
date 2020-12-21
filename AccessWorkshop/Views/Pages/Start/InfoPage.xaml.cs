@@ -48,5 +48,17 @@ namespace AccessWorkshop.Views.Pages.Start
         {
             Export.ExportToTXT(dbDataView);
         }
+
+        private void btn_Back_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Вы действительлно хотите выйти из программы?", "Вы уверены?",
+                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                Application.Current.Shutdown();
+        }
+
+        private void btn_Reload_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new LoginPage());
+        }
     }
 }
