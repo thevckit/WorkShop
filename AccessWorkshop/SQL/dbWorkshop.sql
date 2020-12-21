@@ -107,3 +107,7 @@ create table [TimeWorkShop](
 	constraint pk_TimeWorkShop_ID	primary key ([ID])
 )
 go
+
+
+select * from [WorkShop]
+select * from [Student]

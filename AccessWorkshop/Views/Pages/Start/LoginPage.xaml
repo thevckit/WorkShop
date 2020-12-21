@@ -39,7 +39,8 @@
                            FontSize="24"
                            Foreground="DimGray"
                            FontWeight="Bold"
-                           HorizontalAlignment="Center"/>
+                           HorizontalAlignment="Center"
+                           Margin="10"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1" 
@@ -66,15 +67,17 @@
                          Height="35"/>
             <Button x:Name="btn_Login"
                     HorizontalAlignment="Center"
-                    Margin="0,20,0"
+                    Margin="0,30,0,0"
                     VerticalAlignment="Center"
                     Grid.Row="1"
                     FontSize="18"
                     Height="40"
                     Content="Войти"
                     materialDesign:ButtonAssist.CornerRadius="10"
-                    Width="200"/>
+                    Width="200"
+                    Click="btn_Login_Click"/>
 
         </Grid>
+        
     </Grid>
 </Page>

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-A:\My Doom\C-Sharp\WorkShop\AccessWorkshop\obj\Debug\
+H:\My Doom\C#\WorkShop\AccessWorkshop\obj\Debug\
 AccessWorkshop
 none
 false
 DEBUG;TRACE
-A:\My Doom\C-Sharp\WorkShop\AccessWorkshop\App.xaml
-31640584599
+H:\My Doom\C#\WorkShop\AccessWorkshop\App.xaml
+431105701
 2-1177523661
-24-1489306843
-20763052731
-Views\Pages\Start\InfoPage.xaml;Views\Pages\Start\LoginPage.xaml;Views\Windows\Main\MainWindow.xaml;
+25-763595108
+20-68726926
+Views\Pages\Admin\AdminViewPage.xaml;Views\Pages\Start\InfoPage.xaml;Views\Pages\Start\LoginPage.xaml;Views\Windows\Main\MainWindow.xaml;
 
 True
 
