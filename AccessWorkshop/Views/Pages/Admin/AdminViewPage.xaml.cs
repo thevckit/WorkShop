@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AccessWorkshop.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace AccessWorkshop.Views.Pages.Admin
         public AdminViewPage()
         {
             InitializeComponent();
+            LoadDataFromDB.dbRefresh(dbDataView);
         }
 
         private void btn_Exit_Click(object sender, RoutedEventArgs e)

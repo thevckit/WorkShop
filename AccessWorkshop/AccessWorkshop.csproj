@@ -93,6 +93,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\Export.cs" />
+    <Compile Include="Classes\HelperObject.cs" />
     <Compile Include="Classes\LoadDataFromDB.cs" />
     <Compile Include="Context\dbContext.cs" />
     <Compile Include="Model\ContextModel.Context.cs">
